@@ -13,7 +13,7 @@ header = f'''
             <a href="index.html">WarriorThesis</a>
             <ul>
                 <li><a href="index.html">Home</a></li>
-                <li><a href="./resources/bully-bending-secrets-v1.0.pdf">Bully-Bending Secrets</a></li>
+                <li><a href="bully-bending-secrets.html">Bully-Bending Secrets</a></li>
                 <li><a href="about.html">About</a></li>
                 <li><a href="privacy-policy.html">Privacy Policy</a></li>
             </ul>
