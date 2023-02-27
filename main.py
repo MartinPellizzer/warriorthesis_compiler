@@ -1,5 +1,6 @@
 import shutil
 import os
+import re
 
 # if not os.path.exists('./public/assets/'):
 #     os.makedirs('./public/assets/')
@@ -80,14 +81,50 @@ def generate_assets():
 def generate_homepage():
     article_list = [article for article in os.listdir('./private/articles-html/')]
 
-    with open(f'./private/articles-html/{article_list[0]}') as f:
-        content_1 = f.read()
+    # with open(f'./private/articles-html/{article_list[0]}') as f:
+    #     content_1 = f.read()
         
-    with open(f'./private/articles-html/{article_list[1]}') as f:
-        content_2 = f.read()
+    # with open(f'./private/articles-html/{article_list[1]}') as f:
+    #     content_2 = f.read()
         
-    with open(f'./private/articles-html/{article_list[2]}') as f:
-        content_3 = f.read()
+    # with open(f'./private/articles-html/{article_list[2]}') as f:
+    #     content_3 = f.read()
+
+    articles_html = []
+    for article in article_list:
+        with open(f'./private/articles-html/{article}') as f:
+            lines = f.readlines()
+    
+            title = ''
+            image = ''
+            text = ''
+            for line in lines:
+                if 'h1' in line:
+                    title = line.replace('<h1>', '<h2>').replace('</h1>', '</h2>').strip() 
+                elif 'img' in line:
+                    image = line 
+                elif 'p' in line:
+                    text += line.replace('<p>', '').replace('</p>', '')
+
+            articles_html.append([title, image, f'<p>{text[:100]}...</p>'])
+
+    final_html = ''
+    for article_html in articles_html:
+        final_html += f'''
+            <div class="flex">
+                <div class="flex-3 flex items-center gap-32">
+                    <div class="flex-1">
+                        {article_html[1]}
+                    </div>
+                    <div class="flex-1">
+                        {article_html[0]}
+                        {article_html[2]}
+                        <p><a href="./how-to-spot-the-signs-of-bullying.html">read more -></a></p>
+                    </div>
+                </div>
+                <div class="flex-1"></div>
+            </div>
+        '''
 
     with open(f'./public/index.html', 'w') as f:
         f.write(f'''
@@ -104,21 +141,8 @@ def generate_homepage():
 
             <body>
                 {header}
-                <main class="container-xl mx-auto px-32">
-                    <div class="flex">
-                        <div class="flex-1">
-                        {content_1[:480]}...
-                        <a href="./{article_list[0]}">read more -></a>
-                        </div>
-                        <div class="flex-1">
-                        {content_2[:480]}...
-                        <a href="./{article_list[1]}">read more -></a>
-                        </div>
-                        <div class="flex-1">
-                        {content_3[:480]}...
-                        <a href="./{article_list[2]}">read more -></a>
-                        </div>
-                    </div>
+                <main class="post-list container-xl mx-auto px-32 flex flex-col gap-32">
+                    {final_html}
                 </main>
                 {footer}
             </body>
@@ -126,7 +150,54 @@ def generate_homepage():
             </html>
         ''')
 
-generate_posts()
 
+
+
+
+def generate_article_html(filename):
+    with open(f'./private/articles/{filename}.md') as f:
+        lines = f.readlines()
+
+    html = ''
+    for line in lines:
+        html_tmp = ''
+        if line == '\n': continue
+
+        line = line.replace('\n', '')
+        
+        if 0: pass
+        elif line.startswith('!'):
+            title = re.findall('"([^"]*)"', line)[0]
+
+            src_index_start = line.find('(')
+            src_index_end = line.find(')')
+            src = line[src_index_start+1:src_index_end].split()[0]
+            
+            alt_index_start = line.find('[')
+            alt_index_end = line.find(']')
+            alt = line[alt_index_start+1:alt_index_end].replace('-', ' ')
+
+            html_tmp = f'<p><img alt="{alt}" title="{title}" src="{src}" /></p>'
+        elif line.startswith('###'): 
+            line = line.replace('###', '').strip()
+            html_tmp = f'<h3>{line}</h3>'
+        elif line.startswith('##'): 
+            line = line.replace('##', '').strip()
+            html_tmp = f'<h2>{line}</h2>'
+        elif line.startswith('#'): 
+            line = line.replace('#', '').strip()
+            html_tmp = f'<h1>{line}</h1>'
+        else: 
+            html_tmp = f'<p>{line}</p>'
+
+        print(html_tmp)
+        html += html_tmp
+
+    with open(f'./private/articles-html/{filename}.html', 'w') as f:
+        f.write(html)
+
+# generate_article_html('workplace-bullying-problem')
+
+# generate_posts()
 # generate_assets()
-# generate_homepage()
+generate_homepage()
