@@ -87,14 +87,15 @@ def generate_homepage():
             lines = f.readlines()
     
             title = ''
-            image = ''
+            image_name = article.split('.')[0]
+            image = f'<img alt="{image_name}" title="{image_name}" src="./images/{image_name}/{image_name}.jpg" />'
             text = ''
             for line in lines:
                 if 'h1' in line:
                     title = line.replace('<h1>', '<h2>').replace('</h1>', '</h2>').strip() 
-                elif 'img' in line:
-                    image = line 
-                elif 'p' in line:
+                # elif 'img' in line:
+                #     image = line 
+                elif '<p>' in line:
                     text += line.replace('<p>', '').replace('</p>', '')
 
             articles_html.append([title, image, f'<p>{text[:100]}...</p>', article])
