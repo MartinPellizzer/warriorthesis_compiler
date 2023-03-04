@@ -276,4 +276,4 @@ def generate_articles_html():
 
 generate_posts()
 # generate_assets()
-generate_homepage2()
+generate_homepage()
