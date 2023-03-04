@@ -81,15 +81,6 @@ def generate_assets():
 def generate_homepage():
     article_list = [article for article in os.listdir('./private/articles-html/')]
 
-    # with open(f'./private/articles-html/{article_list[0]}') as f:
-    #     content_1 = f.read()
-        
-    # with open(f'./private/articles-html/{article_list[1]}') as f:
-    #     content_2 = f.read()
-        
-    # with open(f'./private/articles-html/{article_list[2]}') as f:
-    #     content_3 = f.read()
-
     articles_html = []
     for article in article_list:
         with open(f'./private/articles-html/{article}') as f:
@@ -106,7 +97,9 @@ def generate_homepage():
                 elif 'p' in line:
                     text += line.replace('<p>', '').replace('</p>', '')
 
-            articles_html.append([title, image, f'<p>{text[:100]}...</p>'])
+            articles_html.append([title, image, f'<p>{text[:100]}...</p>', article])
+
+            print(title)
 
     final_html = ''
     for article_html in articles_html:
@@ -119,7 +112,79 @@ def generate_homepage():
                     <div class="flex-1">
                         {article_html[0]}
                         {article_html[2]}
-                        <p><a href="./how-to-spot-the-signs-of-bullying.html">read more -></a></p>
+                        <p><a href="./{article_html[3]}">read more -></a></p>
+                    </div>
+                </div>
+                <div class="flex-1"></div>
+            </div>
+        '''
+
+    with open(f'./public/index.html', 'w') as f:
+        f.write(f'''
+            <!DOCTYPE html>
+            <html lang="en">
+
+            <head>
+                <meta charset="UTF-8">
+                <meta http-equiv="X-UA-Compatible" content="IE=edge">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <link rel="stylesheet" href="style.css">
+                <title>Warrior Thesis</title>
+            </head>
+
+            <body>
+                {header}
+                <main class="post-list container-xl mx-auto px-32 flex flex-col gap-32">
+                    {final_html}
+                </main>
+                {footer}
+            </body>
+
+            </html>
+        ''')
+
+def generate_homepage2():
+    article_list = [article for article in os.listdir('./private/articles/')]
+
+    articles = []
+    for article in article_list:
+        with open(f'./private/articles/{article}') as f:
+            lines = f.readlines()
+    
+            title = ''
+            image = ''
+            text = ''
+            for line in lines:
+                if line.startswith('### '):
+                    pass 
+                elif line.startswith('## '):
+                    pass 
+                elif line.startswith('# '):
+                    title = line.replace('# ', '<h2>')
+                    title += '</h2>'
+                    title = title.strip() 
+                elif line.startswith('!'):
+                    image = md_to_html_image(line)
+                else:
+                    text += line
+
+            link = article.replace('md', 'html')
+            articles.append([title, image, f'<p>{text[:100]}...</p>', link])
+
+            print(title)
+
+    final_html = ''
+    for article_html in articles:
+        final_html += f'''
+            <div class="flex">
+                <div class="flex-3 flex items-center gap-32">
+                    <div class="flex-1">
+                        {article_html[1]}
+                    </div>
+                    <div class="flex-1">
+                        {article_html[0]}
+                        {article_html[2]}
+                        <p><a href="./{article_html[3]}">read more -></a></p>
                     </div>
                 </div>
                 <div class="flex-1"></div>
@@ -153,9 +218,24 @@ def generate_homepage():
 
 
 
+def md_to_html_image(text):
+    title = re.findall('"([^"]*)"', text)[0]
+
+    src_index_start = text.find('(')
+    src_index_end = text.find(')')
+    src = text[src_index_start+1:src_index_end].split()[0]
+    
+    alt_index_start = text.find('[')
+    alt_index_end = text.find(']')
+    alt = text[alt_index_start+1:alt_index_end].replace('-', ' ')
+
+    return f'<p><img alt="{alt}" title="{title}" src="{src}" /></p>'
 
 def generate_article_html(filename):
-    with open(f'./private/articles/{filename}.md') as f:
+    input_filename = filename
+    output_filename = filename.replace('md', 'html')
+
+    with open(f'./private/articles/{input_filename}') as f:
         lines = f.readlines()
 
     html = ''
@@ -167,17 +247,7 @@ def generate_article_html(filename):
         
         if 0: pass
         elif line.startswith('!'):
-            title = re.findall('"([^"]*)"', line)[0]
-
-            src_index_start = line.find('(')
-            src_index_end = line.find(')')
-            src = line[src_index_start+1:src_index_end].split()[0]
-            
-            alt_index_start = line.find('[')
-            alt_index_end = line.find(']')
-            alt = line[alt_index_start+1:alt_index_end].replace('-', ' ')
-
-            html_tmp = f'<p><img alt="{alt}" title="{title}" src="{src}" /></p>'
+            html_tmp = md_to_html_image(line)
         elif line.startswith('###'): 
             line = line.replace('###', '').strip()
             html_tmp = f'<h3>{line}</h3>'
@@ -193,11 +263,17 @@ def generate_article_html(filename):
         print(html_tmp)
         html += html_tmp
 
-    with open(f'./private/articles-html/{filename}.html', 'w') as f:
+    with open(f'./private/articles-html/{output_filename}', 'w') as f:
         f.write(html)
 
-# generate_article_html('workplace-bullying-problem')
+def generate_articles_html():
+    for article in os.listdir('./private/articles/'):
+        generate_article_html(article)
 
-# generate_posts()
+
+# generate_articles_html()
+
+
+generate_posts()
 # generate_assets()
-generate_homepage()
+generate_homepage2()
