@@ -14,9 +14,8 @@ header = f'''
             <a href="index.html">WarriorThesis</a>
             <ul>
                 <li><a href="index.html">Home</a></li>
-                <li><a href="workplace-bullying-survival-kit.html">Workplace Bullying Survival Kit</a></li>
+                <li><a href="free-ebook.html">FREE Ebook</a></li>
                 <li><a href="about.html">About</a></li>
-                <li><a href="privacy-policy.html">Privacy Policy</a></li>
             </ul>
         </nav>
     </header>
@@ -25,7 +24,7 @@ header = f'''
 footer = f'''
     <footer>
         <div class="container-xl mx-auto px-32">
-            <p>&#169; 2023 WarriorThesis | All Rights Reserved</p>
+            <p>&#169; 2023 WarriorThesis | All Rights Reserved - <a href="privacy-policy.html">Privacy Policy</a></p>
             <a href="https://twitter.com/warriorthesis" target="_blank">
                 <svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512">
                     <title>Logo Twitter</title>
@@ -143,6 +142,70 @@ def generate_homepage():
 
             </html>
         ''')
+
+
+def generate_page_privacy_policy():
+    with open(f'./private/privacy-policy.html') as f:
+        content = f.read()
+
+    with open(f'./public/privacy-policy.html', 'w') as f:
+        f.write(f'''
+            <!DOCTYPE html>
+            <html lang="en">
+
+            <head>
+                <meta charset="UTF-8">
+                <meta http-equiv="X-UA-Compatible" content="IE=edge">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <link rel="stylesheet" href="style.css">
+                <title>Warrior Thesis</title>
+            </head>
+
+            <body>
+                {header}
+                <main class="container-md mx-auto px-32">
+                    {content}
+                </main>
+                {footer}
+            </body>
+
+            </html>
+        ''')
+
+
+def generate_page_about():
+    input_file = f'./private/pages/about.txt'
+    output_file = f'./private/pages/about.html'
+
+    convert_txt_to_html(input_file, output_file)
+
+    with open(f'./private/pages/about.html') as f:
+        content = f.read()
+
+    with open(f'./public/about.html', 'w') as f:
+        f.write(f'''
+            <!DOCTYPE html>
+            <html lang="en">
+
+            <head>
+                <meta charset="UTF-8">
+                <meta http-equiv="X-UA-Compatible" content="IE=edge">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <link rel="stylesheet" href="style.css">
+                <title>Warrior Thesis</title>
+            </head>
+
+            <body>
+                {header}
+                <main class="container-md mx-auto px-32">
+                    {content}
+                </main>
+                {footer}
+            </body>
+
+            </html>
+        ''')
+
 
 def generate_homepage2():
     article_list = [article for article in os.listdir('./private/articles/')]
@@ -271,10 +334,30 @@ def generate_articles_html():
     for article in os.listdir('./private/articles/'):
         generate_article_html(article)
 
+def convert_txt_to_html(input_file, output_file):
+    with open(input_file) as f:
+        lines = f.readlines()
+
+    html = ''
+    for line in lines:
+        if line == '\n': pass
+        else: html += f'<p>{line}</p>'
+        
+    with open(output_file, 'w') as f:
+        f.write(html)
+
 
 # generate_articles_html()
 
 
-generate_posts()
+# generate_posts()
 # generate_assets()
-generate_homepage()
+# generate_homepage()
+generate_page_privacy_policy()
+generate_page_about()
+
+
+
+
+
+
