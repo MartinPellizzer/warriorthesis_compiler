@@ -2,11 +2,6 @@ import shutil
 import os
 import re
 
-# if not os.path.exists('./public/assets/'):
-#     os.makedirs('./public/assets/')
-
-# shutil.copy2()
-
 
 header = f'''
     <header>
@@ -16,6 +11,7 @@ header = f'''
                 <li><a href="index.html">Home</a></li>
                 <li><a href="free-ebook.html">FREE Ebook</a></li>
                 <li><a href="about.html">About</a></li>
+                <li><a href="./resources/workplace-bullying-survival-kit.pdf">WBSK</a></li>
             </ul>
         </nav>
     </header>
@@ -77,12 +73,12 @@ def generate_assets():
         if asset not in asset_list:
             shutil.copy2(f'./private/assets/{asset}', './public/assets/')
 
-def generate_homepage():
-    article_list = [article for article in os.listdir('./private/articles-html/')]
+def generate_page_home():
+    article_list = [article for article in os.listdir('./private/articles/')]
 
     articles_html = []
     for article in article_list:
-        with open(f'./private/articles-html/{article}') as f:
+        with open(f'./private/articles/{article}') as f:
             lines = f.readlines()
     
             title = ''
@@ -100,6 +96,23 @@ def generate_homepage():
             articles_html.append([title, image, f'<p>{text[:100]}...</p>', article])
 
             print(title)
+
+    hero = f'''
+        <div class="hero">
+            <div class="container-xl mx-auto px-32 h-full">
+                <div class="flex items-center h-full">
+                    <div class="flex-3">
+                        <p>Attention Warrior: New Report Released (FREE for Limited Time).</p>
+                        <h1>Become a workplace bullies worst nightmare! (without guilt)</h1>
+                        <p>Sick of being bullied? Sick of going to bed drained? Sick of waking up strangled by
+                            anxiety? Do yourself a favor and click the button below. Thank me later.</p>
+                        <a href="./free-ebook.html">Download The Workplace Bullying Survival Kit</a>
+                    </div>
+                    <div class="flex-1"></div>
+                </div>
+            </div>
+        </div>
+    '''
 
     final_html = ''
     for article_html in articles_html:
@@ -134,6 +147,7 @@ def generate_homepage():
 
             <body>
                 {header}
+                {hero}
                 <main class="post-list container-xl mx-auto px-32 flex flex-col gap-32">
                     {final_html}
                 </main>
@@ -352,9 +366,9 @@ def convert_txt_to_html(input_file, output_file):
 
 # generate_posts()
 # generate_assets()
-# generate_homepage()
-generate_page_privacy_policy()
+generate_page_home()
 generate_page_about()
+generate_page_privacy_policy()
 
 
 
