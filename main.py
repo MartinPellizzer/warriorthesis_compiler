@@ -11,7 +11,6 @@ header = f'''
                 <li><a href="index.html">Home</a></li>
                 <li><a href="free-ebook.html">FREE Ebook</a></li>
                 <li><a href="about.html">About</a></li>
-                <li><a href="./resources/workplace-bullying-survival-kit.pdf">WBSK</a></li>
             </ul>
         </nav>
     </header>
@@ -33,9 +32,10 @@ footer = f'''
 '''
 
 def generate_post(filename):
-    with open(f'./private/articles-html/{filename}') as f:
+    with open(f'./private/articles/{filename}') as f:
         content = f.read()
 
+    title = filename.split('.')[0].replace('-', ' ').title()
     with open(f'./public/{filename}', 'w') as f:
         f.write(f'''
             <!DOCTYPE html>
@@ -46,7 +46,7 @@ def generate_post(filename):
                 <meta http-equiv="X-UA-Compatible" content="IE=edge">
                 <meta name="viewport" content="width=device-width, initial-scale=1.0">
                 <link rel="stylesheet" href="style.css">
-                <title>Warrior Thesis</title>
+                <title>{title}</title>
             </head>
 
             <body>
@@ -61,7 +61,7 @@ def generate_post(filename):
         ''')
 
 def generate_posts():
-    filenames = [f for f in os.listdir('./private/articles-html/')]
+    filenames = [f for f in os.listdir('./private/articles/')]
 
     for filename in filenames:
         generate_post(filename)
@@ -132,6 +132,17 @@ def generate_page_home():
             </div>
         '''
 
+    google_analytics = '''
+        <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-SDTE2BV5BM"></script>
+        <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-SDTE2BV5BM');
+        </script>
+    '''
     with open(f'./public/index.html', 'w') as f:
         f.write(f'''
             <!DOCTYPE html>
@@ -143,6 +154,8 @@ def generate_page_home():
                 <meta name="viewport" content="width=device-width, initial-scale=1.0">
                 <link rel="stylesheet" href="style.css">
                 <title>Warrior Thesis</title>
+                {google_analytics}
+                
             </head>
 
             <body>
