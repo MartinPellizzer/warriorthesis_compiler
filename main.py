@@ -9,7 +9,7 @@ header = f'''
                 <a href="index.html">WarriorThesis</a>
                 <ul>
                     <li><a href="index.html">Home</a></li>
-                    <li><a href="free-ebook.html">FREE Ebook</a></li>
+                    <li><a href="workplace-bullying-survival-kit.html">Workplace Bullying Survival Kit</a></li>
                     <li><a href="about.html">About</a></li>
                 </ul>
             </nav>
