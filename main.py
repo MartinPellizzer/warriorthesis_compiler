@@ -43,6 +43,18 @@ footer = f'''
         </footer>
     '''
 
+newsletter_form = '''
+    <!-- MailerLite Universal -->
+    <script>
+        (function(w,d,e,u,f,l,n){w[f]=w[f]||function(){(w[f].q=w[f].q||[])
+        .push(arguments);},l=d.createElement(e),l.async=1,l.src=u,
+        n=d.getElementsByTagName(e)[0],n.parentNode.insertBefore(l,n);})
+        (window,document,'script','https://assets.mailerlite.com/js/universal.js','ml');
+        ml('account', '315454');
+    </script>
+    <!-- End MailerLite Universal -->
+    '''
+
 
 def generate_post(filename):
     with open(f'./private/articles/{filename}') as f:
@@ -178,37 +190,8 @@ def generate_page_home():
         ''')
 
 
-def generate_page_privacy_policy():
-    with open(f'./private/privacy-policy.html') as f:
-        content = f.read()
-
-    with open(f'./public/privacy-policy.html', 'w') as f:
-        f.write(f'''
-            <!DOCTYPE html>
-            <html lang="en">
-
-            <head>
-                <meta charset="UTF-8">
-                <meta http-equiv="X-UA-Compatible" content="IE=edge">
-                <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                <link rel="stylesheet" href="style.css">
-                <title>Warrior Thesis | Privacy Policy</title>
-                {google_analytics}
-            </head>
-
-            <body>
-                {header}
-                <main class="container-md mx-auto px-32">
-                    {content}
-                </main>
-                {footer}
-            </body>
-
-            </html>
-        ''')
-
-
 def generate_page_about():
+
     input_file = f'./private/pages/about.txt'
     output_file = f'./private/pages/about.html'
 
@@ -243,6 +226,66 @@ def generate_page_about():
         ''')
 
 
+def generate_page_privacy_policy():
+    with open(f'./private/privacy-policy.html') as f:
+        content = f.read()
+
+    with open(f'./public/privacy-policy.html', 'w') as f:
+        f.write(f'''
+            <!DOCTYPE html>
+            <html lang="en">
+
+            <head>
+                <meta charset="UTF-8">
+                <meta http-equiv="X-UA-Compatible" content="IE=edge">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <link rel="stylesheet" href="style.css">
+                <title>Warrior Thesis | Privacy Policy</title>
+                {google_analytics}
+            </head>
+
+            <body>
+                {header}
+                <main class="container-md mx-auto px-32">
+                    {content}
+                </main>
+                {footer}
+            </body>
+
+            </html>
+        ''')
+
+
+
+def generate_page_workplace_bullying_survival_kit():
+    with open(f'./private/workplace-bullying-survival-kit.html') as f:
+        content = f.read()
+
+    with open(f'./public/workplace-bullying-survival-kit.html', 'w') as f:
+        f.write(f'''
+            <!DOCTYPE html>
+            <html lang="en">
+
+            <head>
+                <meta charset="UTF-8">
+                <meta http-equiv="X-UA-Compatible" content="IE=edge">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <link rel="stylesheet" href="style.css">
+                <title>Warrior Thesis | Workplace Bullying Survival Kit</title>
+                {newsletter_form}
+                {google_analytics}
+            </head>
+
+            <body>
+                {header}
+                <main class="container-md mx-auto px-32 pt-32">
+                    {content}
+                </main>
+                {footer}
+            </body>
+
+            </html>
+        ''')
 
 
 def generate_homepage2():
@@ -389,10 +432,11 @@ def convert_txt_to_html(input_file, output_file):
 # generate_assets()
 
 
-generate_posts()
+# generate_posts()
 generate_page_home()
 generate_page_about()
 generate_page_privacy_policy()
+generate_page_workplace_bullying_survival_kit()
 
 
 
