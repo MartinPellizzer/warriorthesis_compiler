@@ -288,6 +288,36 @@ def generate_page_workplace_bullying_survival_kit():
         ''')
 
 
+def generate_page_thank_you():
+    with open(f'./private/thank-you.html') as f:
+        content = f.read()
+
+    with open(f'./public/thank-you.html', 'w') as f:
+        f.write(f'''
+            <!DOCTYPE html>
+            <html lang="en">
+
+            <head>
+                <meta charset="UTF-8">
+                <meta http-equiv="X-UA-Compatible" content="IE=edge">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <link rel="stylesheet" href="style.css">
+                <title>Warrior Thesis | Thank You</title>
+                {google_analytics}
+            </head>
+
+            <body>
+                {header}
+                <main class="container-md mx-auto px-32 pt-32">
+                    {content}
+                </main>
+                {footer}
+            </body>
+
+            </html>
+        ''')
+
+
 def generate_homepage2():
     article_list = [article for article in os.listdir('./private/articles/')]
 
@@ -437,6 +467,7 @@ generate_page_home()
 generate_page_about()
 generate_page_privacy_policy()
 generate_page_workplace_bullying_survival_kit()
+generate_page_thank_you()
 
 
 
