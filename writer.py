@@ -2,8 +2,6 @@ from urllib.request import urlopen
 from bs4 import BeautifulSoup
 from googlesearch import search
 
-
-
 def scrape_headers(query):
     urls = [url for url in search(query, tld="co.in", num=10, stop=10, pause=2)]
 

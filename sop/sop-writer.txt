@@ -1,0 +1,23 @@
+=======================
+WRITE POST
+=======================
+
+KEYWORD
+	select keyword research tool
+
+TITLE
+	[x] [adj] [keyword] [specificity]
+
+OUTLINE
+	scrape headers from google top 10
+	ask chatgpt for outline
+	compile outline from above results
+
+POST
+	for each header, ask for a list of info
+	rewrite the output to make it original
+	ask chatgpt for intro of every section
+	add one line at the start of every section
+
+IMAGES
+	select an image for every h2
