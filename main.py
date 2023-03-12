@@ -462,12 +462,12 @@ def convert_txt_to_html(input_file, output_file):
 # generate_assets()
 
 
-# generate_posts()
-generate_page_home()
-generate_page_about()
-generate_page_privacy_policy()
-generate_page_workplace_bullying_survival_kit()
-generate_page_thank_you()
+generate_posts()
+# generate_page_home()
+# generate_page_about()
+# generate_page_privacy_policy()
+# generate_page_workplace_bullying_survival_kit()
+# generate_page_thank_you()
 
 
 
