@@ -1,3 +1,22 @@
+# 27 devastating workplace bullying effects for employees
+
+Headaches? Anxiety? Lack of motivation?
+
+What if I tell you that workplace bullying can have these effects (and many more) on you?
+
+Workplace bullying is a scourge that affects millions of employees worldwide, leading to devastating consequences for their mental and physical health, job satisfaction, and productivity. It's a vicious cycle that can leave employees feeling isolated, helpless, and vulnerable, while also wreaking havoc on their personal and professional lives.
+
+Studies have shown that bullying in the workplace can lead to a wide range of effects, such as depression, anxiety, and PTSD, to name a few. For example, a survey conducted by the Workplace Bullying Institute revealed that over 60% of employees who were bullied suffered from anxiety and panic attacks, while over 40% reported depression and feelings of hopelessness.
+
+Furthermore, the effects of workplace bullying can extend to physical health, causing headaches, digestive issues, and sleep disorders. In fact, a study published in the International Journal of Behavioral Medicine found that employees who were bullied were twice as likely to experience sleep disturbances than those who weren't.
+
+Despite these alarming statistics and studies, workplace bullying continues to be a pervasive problem, often ignored or dismissed by management.
+
+It's time for employees to speak up and demand change, to create a safe and healthy work environment where bullying is not tolerated.
+
+In this post, we'll explore 27 devastating workplace bullying effects for employees, including real-life examples that illustrate the harsh reality of this issue. It's time to raise awareness, to stand up for ourselves and our colleagues, and to demand a workplace free of bullying and harassment.
+
+
 ## What is workplace bullying
 
 Just so we are on the same page, let me give you a quick intro on what is workplace bullying.
@@ -43,9 +62,7 @@ Feel like a target at work? Here are some signs that you may be experiencing wor
 
 Body and mind are one and the same. If the mind suffer, the body pays the consequences too.
 
-Research shows that victims of bullying are more likely to experience physical health issues such as headaches, sleep disturbances, and cardiovascular problems.
-
-According to a study by the Workplace Bullying Institute, 45% of bullying victims reported experiencing stress-related health problems.
+Research shows that victims of bullying are more likely to experience physical health issues such as headaches, sleep disturbances, and cardiovascular problems. According to a study by the Workplace Bullying Institute, 45% of bullying victims reported experiencing stress-related health problems.
 
 This is unacceptable.
 
@@ -163,3 +180,19 @@ If you're feeling stressed or unmotivated, it may show in the way you interact w
 
 ### Increased use of sick days or medical leave
 We've already mentioned this one, but it bears repeating. If you're experiencing workplace stress, you may find yourself taking more time off work due to physical or mental health concerns. This can be a vicious cycle, as taking time off work can lead to even more stress and anxiety about falling behind on your tasks.
+
+## Conclusion and Next Steps
+
+In conclusion, workplace bullying is a scourge that no employee should ever have to endure. It can have devastating effects on one's physical, emotional, and mental well-being.
+
+The 27 effects of workplace bullying we've outlined in this blog post are just the tip of the iceberg, and they can leave deep and lasting scars on the victim. From loss of confidence and self-esteem to anxiety, depression, and even suicide, the consequences of workplace bullying are nothing short of heartbreaking.
+
+Sadly, workplace bullying is all too common in many industries, and it can happen to anyone regardless of their age, gender, or position. Whether it's a manager who bullies their subordinates, a colleague who undermines your work or a client who belittles you, workplace bullying is unacceptable, and it must stop.
+
+If you've experienced workplace bullying, know that you are not alone, and there are resources available to help you.
+
+I highly encourage you to download download the Workplace Bullying Survival Kit, which is packed with practical tips and strategies to help you protect yourself against workplace bullying. Also, it's FREE.
+
+With the right tools and support, you can take back control of your life and regain your dignity and self-respect.
+
+Remember, workplace bullying is not something you have to tolerate, and you deserve to be treated with respect and kindness at all times. So don't suffer in silence, reach out for help, and take the first step towards becoming a workplace bullies worst nightmare.

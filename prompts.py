@@ -50,14 +50,13 @@ have a mix of short and long paragraphs,
 '''
 
 write_blog_section_intro = '''
-write a 100 words or less blog post paragraph about "Mental Effects of Workplace Bullying",
+write a 200 words or less blog post intro about "27 devastating workplace bullying effects for employees",
 include examples, 
 include statistics,
 include studies,
 do NOT repeat yourself,
 use an engaging, angry, and frustrated tone of voice,
 make it relatable to employees,
-add line breaks between sentences in the paragraph,
 '''
 
 
