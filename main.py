@@ -77,7 +77,7 @@ def generate_post(filename):
 
             <body>
                 {header}
-                <main class="container-md mx-auto px-32">
+                <main class="post container-md mx-auto px-32">
                     {content}
                 </main>
                 {footer}
@@ -116,13 +116,14 @@ def generate_page_home():
             text = ''
             for line in lines:
                 if 'h1' in line:
-                    title = line.replace('<h1>', '<h2>').replace('</h1>', '</h2>').strip() 
+                    title = line.replace('<h1>', f'<h2><a href="./{article}">')
+                    title = title.replace('</h1>', '</a></h2>').strip() 
                 # elif 'img' in line:
                 #     image = line 
                 elif '<p>' in line:
                     text += line.replace('<p>', '').replace('</p>', '')
 
-            articles_html.append([title, image, f'<p>{text[:100]}...</p>', article])
+            articles_html.append([title, image, f'<p>{text[:200]}...</p>'])
 
             print(title)
 
@@ -154,7 +155,6 @@ def generate_page_home():
                     <div class="flex-1">
                         {article_html[0]}
                         {article_html[2]}
-                        <p><a href="./{article_html[3]}">read more -></a></p>
                     </div>
                 </div>
                 <div class="flex-1"></div>
@@ -256,7 +256,6 @@ def generate_page_privacy_policy():
         ''')
 
 
-
 def generate_page_workplace_bullying_survival_kit():
     with open(f'./private/workplace-bullying-survival-kit.html') as f:
         content = f.read()
@@ -318,81 +317,6 @@ def generate_page_thank_you():
         ''')
 
 
-def generate_homepage2():
-    article_list = [article for article in os.listdir('./private/articles/')]
-
-    articles = []
-    for article in article_list:
-        with open(f'./private/articles/{article}') as f:
-            lines = f.readlines()
-    
-            title = ''
-            image = ''
-            text = ''
-            for line in lines:
-                if line.startswith('### '):
-                    pass 
-                elif line.startswith('## '):
-                    pass 
-                elif line.startswith('# '):
-                    title = line.replace('# ', '<h2>')
-                    title += '</h2>'
-                    title = title.strip() 
-                elif line.startswith('!'):
-                    image = md_to_html_image(line)
-                else:
-                    text += line
-
-            link = article.replace('md', 'html')
-            articles.append([title, image, f'<p>{text[:100]}...</p>', link])
-
-            print(title)
-
-    final_html = ''
-    for article_html in articles:
-        final_html += f'''
-            <div class="flex">
-                <div class="flex-3 flex items-center gap-32">
-                    <div class="flex-1">
-                        {article_html[1]}
-                    </div>
-                    <div class="flex-1">
-                        {article_html[0]}
-                        {article_html[2]}
-                        <p><a href="./{article_html[3]}">read more -></a></p>
-                    </div>
-                </div>
-                <div class="flex-1"></div>
-            </div>
-        '''
-
-    with open(f'./public/index.html', 'w') as f:
-        f.write(f'''
-            <!DOCTYPE html>
-            <html lang="en">
-
-            <head>
-                <meta charset="UTF-8">
-                <meta http-equiv="X-UA-Compatible" content="IE=edge">
-                <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                <link rel="stylesheet" href="style.css">
-                <title>Warrior Thesis</title>
-            </head>
-
-            <body>
-                {header}
-                <main class="post-list container-xl mx-auto px-32 flex flex-col gap-32">
-                    {final_html}
-                </main>
-                {footer}
-            </body>
-
-            </html>
-        ''')
-
-
-
-
 def md_to_html_image(text):
     title = re.findall('"([^"]*)"', text)[0]
 
@@ -405,6 +329,7 @@ def md_to_html_image(text):
     alt = text[alt_index_start+1:alt_index_end].replace('-', ' ')
 
     return f'<p><img alt="{alt}" title="{title}" src="{src}" /></p>'
+
 
 def generate_article_html(filename):
     input_filename = filename

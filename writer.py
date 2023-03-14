@@ -80,6 +80,7 @@ def convert_md_to_html():
     toc += f'<ul>'
     new_subsection = False
     i = 1
+    k = 1
     for line in lines:
         if 0: pass
         elif line.startswith('### '):
@@ -87,8 +88,9 @@ def convert_md_to_html():
             if not new_subsection:
                 new_subsection = True
                 toc += f'<ul>'
-            toc += f'<li><a href="#{i}">{i}. {line}</a></li>'
+            toc += f'<li><a href="#{i}">{k}. {line}</a></li>'
             i += 1
+            k += 1
         elif line.startswith('## '):
             if new_subsection:
                 new_subsection = False
